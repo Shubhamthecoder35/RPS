@@ -5,8 +5,7 @@ import pickle
 class Network:
     def __init__(self):
         self.client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.client.settimeout(10)  # 10 second timeout
-        self.server = "rps-game-server.onrender.com"
+        self.server = "127.0.0.1"
         self.port = 5000
         self.addr = (self.server, self.port)
         self.p = self.connect()
@@ -17,13 +16,8 @@ class Network:
 
     def connect(self):
         try:
-            print(f"Attempting to connect to {self.server}:{self.port}...")
             self.client.connect(self.addr)
-            print("Connected! Waiting for player assignment...")
             return self.client.recv(2048).decode()
-        except socket.timeout:
-            print(f"Connection timeout: Server at {self.server}:{self.port} did not respond within 10 seconds")
-            return None
         except Exception as e:
             print(f"Connection failed: {e}")
             return None
