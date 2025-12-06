@@ -4,8 +4,7 @@ import pickle
 import os
 from game import Game
 
-# server = "0.0.0.0"  # Accept connections from anywhere
-server = "127.0.0.1" # test locally
+server = "0.0.0.0"  # Accept connections from anywhere
 port = int(os.environ.get('PORT', 5000))  # Render assigns PORT env var
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
